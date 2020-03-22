@@ -129,7 +129,7 @@
       r2: 0.1,
       chartData: [],
       chartConfig: {
-        values: ['money', 'money2'],
+        values: ['FV', 'FV2'],
         date: {
           key: 'year',
           inputFormat: '%Y',
@@ -160,8 +160,8 @@
         this.chartDataClear();
         for (let i = 0; i < n; i++) {
           chartData.push({
-            money: this.getFV(i) || 0,
-            money2: this.getFV2(i) || 0,
+            FV: this.getFV(i) || 0,
+            FV2: this.getFV2(i) || 0,
             year: i,
           });
         }
