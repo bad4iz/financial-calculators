@@ -3,8 +3,31 @@
     <v-container>
       <v-row>
         <v-col cols="12" md="6">
-          <img alt="Vue logo" src="../assets/permanent-annuity.png" />
-
+          <v-row>
+            <v-col cols="12" md="6">
+              <img alt="Vue logo" src="../assets/permanent-annuity.png" />
+            </v-col>
+            <v-col cols="12" md="6">
+              <v-list disabled>
+                <v-list-item>
+                  <v-list-item-icon>
+                    FV №1:
+                  </v-list-item-icon>
+                  <v-list-item-content>
+                    <v-list-item-title>{{FV}}</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-icon>
+                    FV №2:
+                  </v-list-item-icon>
+                  <v-list-item-content>
+                    <v-list-item-title>{{getFV2(n)}}</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list>
+            </v-col>
+          </v-row>
           <v-form v-model="valid">
             <v-container>
               <v-row>
@@ -15,6 +38,7 @@
                     required
                   ></v-text-field>
 
+                  <h3>Постоянный аннуитет - FV №1</h3>
                   <v-text-field
                     v-model="A"
                     label="A - сколько будете вносить каждый раз"
@@ -37,7 +61,7 @@
                     label="p - сколько раз будете ложить в год"
                     required
                   ></v-text-field>
-                  <h3>график сравнения</h3>
+                  <h3>Постоянный аннуитет - FV №2</h3>
                   <v-text-field
                     v-model="A2"
                     label="A2 - сколько будете вносить каждый раз"
@@ -66,12 +90,17 @@
           </v-form>
         </v-col>
         <v-col cols="12" md="6">
-          {{FV}}
           <D3LineChart
             v-if="chartData.length"
             :config="chartConfig"
             :datum="chartData"
           ></D3LineChart>
+          <v-slider
+            v-model="n"
+            :label="`Количество лет - ${n}`"
+            min="1"
+            max="125"
+          ></v-slider>
         </v-col>
       </v-row>
     </v-container>
@@ -92,7 +121,8 @@
       m: 12,
       p: 12,
       r: 0.1,
-
+      cache1: {},
+      cache2: {},
       A2: 360000,
       m2: 1,
       p2: 1,
@@ -106,7 +136,7 @@
           outputFormat: '%Y',
         },
         axis: {
-          yFormat: '.0f',
+          yFormat: '.1s',
           yTitle: 'Накоплено денег',
         },
         margin: {
@@ -120,7 +150,7 @@
         },
         transition: {
           ease: 'easeBounceOut',
-          duration: 1000,
+          duration: 100,
         },
       },
     }),
@@ -142,17 +172,27 @@
     methods: {
       getFV(n) {
         const { A, m, p, r } = this;
-
+        const nameCache = `${A}-${n}-${m}-${p}-${r}`;
+        if (this.cache1[nameCache]) {
+          return this.cache1[nameCache];
+        }
         const top = (1 + r / m) ** (m * n) - 1;
         const bottom = (1 + r / m) ** (m / p) - 1;
-        return Math.round(A * (top / bottom) || 0);
+        this.cache1[nameCache] = Math.round(A * (top / bottom) || 0);
+        return this.cache1[nameCache];
       },
       getFV2(n) {
         const { A2, m2, p2, r2 } = this;
 
+        const nameCache = `${A2}-${n}-${m2}-${p2}-${r2}`;
+        if (this.cache2[nameCache]) {
+          return this.cache2[nameCache];
+        }
+
         const top = (1 + r2 / m2) ** (m2 * n) - 1;
         const bottom = (1 + r2 / m2) ** (m2 / p2) - 1;
-        return Math.round(A2 * (top / bottom) || 0);
+        this.cache2[nameCache] = Math.round(A2 * (top / bottom) || 0);
+        return this.cache2[nameCache];
       },
       chartDataClear() {
         while (this.chartData.length) {

@@ -12,15 +12,15 @@
  */
 
 importScripts(
-  "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js"
+  'https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js'
 );
 
-importScripts("/precache-manifest.4fbc83e1b50e42c4559898521c332287.js");
+importScripts('/precache-manifest.4fbc83e1b50e42c4559898521c332287.js');
 
-workbox.core.setCacheNameDetails({ prefix: "financial-calculators" });
+workbox.core.setCacheNameDetails({ prefix: 'financial-calculators' });
 
-self.addEventListener("message", event => {
-  if (event.data && event.data.type === "SKIP_WAITING") {
+self.addEventListener('message', event => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
     self.skipWaiting();
   }
 });
