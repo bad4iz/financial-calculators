@@ -1,0 +1,17 @@
+diff a/src/views/Home.vue b/src/views/Home.vue	(rejected hunks)
+@@ -3 +3 @@
+-    <PermanentAnnuity/>
++    <PermanentAnnuity />
+@@ -8,7 +8,5 @@
+-
+-
+-import PermanentAnnuity from "./PermanentAnnuity";
+-export default {
+-  name: "Home",
+-  components: {PermanentAnnuity},
+-};
++  import PermanentAnnuity from './PermanentAnnuity';
++  export default {
++    name: 'Home',
++    components: { PermanentAnnuity },
++  };

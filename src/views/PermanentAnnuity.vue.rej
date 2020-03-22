@@ -1,0 +1,6 @@
+diff a/src/views/PermanentAnnuity.vue b/src/views/PermanentAnnuity.vue	(rejected hunks)
+@@ -123,2 +123,2 @@
+-          duration: 1000
+-        }
++          duration: 1000,
++        },

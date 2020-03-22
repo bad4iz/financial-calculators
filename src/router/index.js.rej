@@ -1,0 +1,39 @@
+diff a/src/router/index.js b/src/router/index.js	(rejected hunks)
+@@ -1,3 +1,3 @@
+-import Vue from "vue";
+-import VueRouter from "vue-router";
+-import Home from "../views/Home.vue";
++import Vue from 'vue';
++import VueRouter from 'vue-router';
++import Home from '../views/Home.vue';
+@@ -9,3 +9,3 @@ const routes = [
+-    path: "/",
+-    name: "Home",
+-    component: Home
++    path: '/',
++    name: 'Home',
++    component: Home,
+@@ -14,2 +14,2 @@ const routes = [
+-    path: "/about",
+-    name: "About",
++    path: '/about',
++    name: 'About',
+@@ -20 +20 @@ const routes = [
+-      import(/* webpackChunkName: "about" */ "../views/About.vue")
++      import(/* webpackChunkName: "about" */ '../views/About.vue'),
+@@ -23,2 +23,2 @@ const routes = [
+-    path: "/permanent-annuity",
+-    name: "PermanentAnnuity",
++    path: '/permanent-annuity',
++    name: 'PermanentAnnuity',
+@@ -29,2 +29,2 @@ const routes = [
+-      import(/* webpackChunkName: "about" */ "../views/PermanentAnnuity.vue")
+-  }
++      import(/* webpackChunkName: "about" */ '../views/PermanentAnnuity.vue'),
++  },
+@@ -34 +34 @@ const router = new VueRouter({
+-  mode: "history",
++  mode: 'history',
+@@ -36 +36 @@ const router = new VueRouter({
+-  routes
++  routes,
