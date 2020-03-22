@@ -137,7 +137,7 @@
         }
         const top = (1 + r / m) ** (m * n) - 1;
         const bottom = (1 + r / m) ** (m / p) - 1;
-        this.cache1[nameCache] = Math.round(A * (top / bottom) || 0);
+        this.cache1[nameCache] = Math.round(A * 30 * (top / bottom) || 0);
         return this.cache1[nameCache];
       },
       chartDataClear() {
