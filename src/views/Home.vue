@@ -33,7 +33,9 @@
             <div>
               А начав инвестировать эти накомления можно увеличить. За
               <strong>{{n}}</strong> лет вы можете заработать
-              <h3>{{moneyFormat(FV)}} рублей</h3>
+              <h3>{{moneyFormat(FV)}} рублей.</h3>
+              А за <strong>{{n+4}}</strong> лет вы можете заработать уже
+              <h3>{{moneyFormat(getFV(n+4))}} рублей.</h3>
             </div>
           </v-card-text>
         </v-card>
